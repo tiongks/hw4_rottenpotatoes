@@ -18,10 +18,14 @@ module NavigationHelpers
 
     when /edit page for/ then begin
       anchor_ref = page_name.match /edit page for\s\"(.*)\"/
-      page_ref = page.body.scan /\/movies\/(.*)\"(.*)#{anchor_ref}/
-      "/movies/" + page_ref[1].to_s
+      page_ref = page.body.scan /\/movies\/(.*)\"(.*)#{anchor_ref[1]}/
+      "/movies/" + page_ref[0][0] + "/edit"
     rescue Exception => e
       raise "Error in mapping #{anchor_ref[1]}: " + "/movies/" + page_ref.to_s + "\npage.body:\n" + page.body
+    end
+
+    when  /movies\/\d/ then begin
+      "movies/" + page_name
     end
 
     # Add more mappings here.

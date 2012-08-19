@@ -9,6 +9,11 @@ Given /the following movies exist/ do |movies_table|
   @numrows = Movie.count
 end
 
+Given /I am on the details page for \"(.*)\"/ do |movie_name|
+  id = Movie.find_by_title(movie_name)[:id]
+  visit path_to('movies/' + id.to_s)
+end
+
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
@@ -35,6 +40,12 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
     uncheck.nil? ? check("ratings[#{rating}]") : uncheck("ratings[#{rating}]");
   end
 end
+
+Then /director of \"(.*)\" should be \"(.*)\"/ do |movie, director|
+  regexp = /#{director}/m
+  page.body.should =~ regexp
+end
+
 
 Then /I should see all of the movies/ do 
   assert page.all('table#movies tr').count - 1 == @numrows
