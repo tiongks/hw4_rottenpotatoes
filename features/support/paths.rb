@@ -13,8 +13,16 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the home\s?page$/
+    when /^the home\s?page$/ then '/movies'
       '/'
+
+    when /edit page for/ then begin
+      anchor_ref = page_name.match /edit page for\s\"(.*)\"/
+      page_ref = page.body.scan /\/movies\/(.*)\"(.*)#{anchor_ref}/
+      "/movies/" + page_ref[1].to_s
+    rescue Exception => e
+      raise "Error in mapping #{anchor_ref[1]}: " + "/movies/" + page_ref.to_s + "\npage.body:\n" + page.body
+    end
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

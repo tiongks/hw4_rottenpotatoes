@@ -13,8 +13,18 @@ Background: movies in database
   | Alien        | R      |              |   1979-05-25 |
   | THX-1138     | R      | George Lucas |   1971-03-11 |
 
+Scenario: I should see a list of movies
+  When I go to the movies page
+  And I check "ratings[R]"
+  And I press "Refresh"
+  Then I should see "Alien"
+
 Scenario: add director to existing movie
-  When I go to the edit page for "Alien"
+  When I go to the movies page
+  And I check "ratings[R]"
+  And I press "Refresh"
+  And I go to the edit page for "Alien"
+  # When I go to the edit page for "Alien"
   And  I fill in "Director" with "Ridley Scott"
   And  I press "Update Movie Info"
   Then the director of "Alien" should be "Ridley Scott"
