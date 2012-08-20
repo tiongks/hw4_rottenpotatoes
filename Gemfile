@@ -25,7 +25,7 @@ group :test do
   gem 'rspec-mocks'
   gem 'simplecov'
   gem 'autotest'
-  # gem 'factory_girl_rails'
+  gem 'factory_girl_rails'
 end
 
 group :production do
