@@ -17,12 +17,9 @@ module NavigationHelpers
       '/'
 
     when /edit page for/ then begin
-      # anchor_ref = page_name.match /edit page for\s\"(.*)\"/
-      # page_ref = page.body.scan /\/movies\/(.*)\"(.*)#{anchor_ref[1]}/
       movie_title = page_name.match /edit page for\s\"(.*)\"/
       "/movies/" + Movie.find_by_title(movie_title[1]).id.to_s + "/edit"
     rescue Exception => e
-      # raise "Error in mapping #{anchor_ref[1]}: " + "/movies/" + page_ref.to_s + "\npage.body:\n" + page.body
       raise "Error in mapping \"#{movie_title}\"."
     end
 

@@ -37,7 +37,13 @@ class MoviesController < ApplicationController
   end
 
   def director
-    @movies = Movie.all(:conditions => {:director => params[:director]})
+    movie = Movie.find_by_title(params[:movie_title]) unless params[:movie_title].nil?
+    @director = movie.director unless movie.nil?
+    if @director.nil? then
+      redirect_to "/"
+    else
+      @movies = Movie.all(:conditions => {:director => @director})
+    end
   end
 
   def create
