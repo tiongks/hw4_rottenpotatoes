@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
       movie = Movie.find_by_title(movie_title)
       @director = movie.nil? ? nil : movie.director;
       if (@director.nil? || @director == '') then
-        @secret_msg = "'#{movie_title}' has no director info"
+        flash[:notice] = "'#{movie_title}' has no director info"
       else
         @movies = Movie.find_all_by_director(@director)
       end

@@ -17,7 +17,7 @@ group :test, :development do
   gem 'launchy'          # a useful debugging aid for user stories
   gem 'rspec-rails'
   gem 'rspec-mocks'
-  gem 'simplecov'
+  gem 'simplecov', :require => false
   gem 'autotest'
 end
 
