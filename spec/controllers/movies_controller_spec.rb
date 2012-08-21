@@ -11,7 +11,7 @@ describe MoviesController do
 
     it 'should show individual movie details' do
       Movie.should_receive(:find)
-      post :show
+      post :show, :id => "1"
     end
 
     it 'should sort by title' do
