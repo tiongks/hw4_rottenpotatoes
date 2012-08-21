@@ -20,11 +20,11 @@ Scenario: I should see a list of movies
   Then I should see "Alien"
 
 Scenario: add director to existing movie
-  When I go to the movies page
-  And I check "ratings[R]"
-  And I press "Refresh"
-  And I go to the edit page for "Alien"
-  # When I go to the edit page for "Alien"
+  # When I go to the movies page
+  # And I check "ratings[R]"
+  # And I press "Refresh"
+  # And I go to the edit page for "Alien"
+  When I go to the edit page for "Alien"
   And  I fill in "Director" with "Ridley Scott"
   And  I press "Update Movie Info"
   Then the director of "Alien" should be "Ridley Scott"
