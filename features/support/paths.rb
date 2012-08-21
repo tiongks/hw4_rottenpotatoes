@@ -13,8 +13,9 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
 
-    when /^the home\s?page$/ then '/movies'
-      '/'
+      when /^the home\s?page$/ then begin
+        '/movies'
+      end
 
     when /edit page for/ then begin
       movie_title = page_name.match /edit page for\s\"(.*)\"/
@@ -27,7 +28,7 @@ module NavigationHelpers
       "movies/" + page_name
     end
 
-    when /Similar Movies page for \"(.*)\"/ then '/movies/director'
+    when /Similar Movies page for \"(.*)\"/ then '/movies'
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

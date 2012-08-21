@@ -7,13 +7,29 @@ class MoviesController < ApplicationController
   end
 
   def index
+    movie_title = params[:movie_title]
+
+    unless movie_title.nil? then
+      movie = Movie.find_by_title(movie_title)
+      @director = movie.nil? ? nil : movie.director;
+      if (@director.nil? || @director == '') then
+        @secret_msg = "'#{movie_title}' has no director info"
+      else
+        @movies = Movie.find_all_by_director(@director)
+      end
+      render "director"
+      return
+    end
+
     sort = params[:sort] || session[:sort]
+    
     case sort
     when 'title'
       ordering,@title_header = {:order => :title}, 'hilite'
     when 'release_date'
       ordering,@date_header = {:order => :release_date}, 'hilite'
     end
+
     @all_ratings = Movie.all_ratings
     @selected_ratings = params[:ratings] || session[:ratings] || {}
 
@@ -34,16 +50,6 @@ class MoviesController < ApplicationController
 
   def new
     # default: render 'new' template
-  end
-
-  def director
-    movie = Movie.find_by_title(params[:movie_title]) unless params[:movie_title].nil?
-    @director = movie.director unless movie.nil?
-    if @director.nil? then
-      redirect_to "/"
-    else
-      @movies = Movie.all(:conditions => {:director => @director})
-    end
   end
 
   def create

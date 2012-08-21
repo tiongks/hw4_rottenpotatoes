@@ -12,7 +12,7 @@ end
 
 Given /I am on the details page for \"(.*)\"/ do |movie_name|
   id = Movie.find_by_title(movie_name)[:id]
-  visit path_to('movies/' + id.to_s)
+  visit path_to('/movies/' + id.to_s)
 end
 
 # Make sure that one string (regexp) occurs before or after another one

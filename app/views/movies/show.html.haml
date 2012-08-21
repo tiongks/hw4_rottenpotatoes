@@ -23,7 +23,4 @@
 = button_to 'Delete', movie_path(@movie), :method => :delete, :confirm => 'Are you sure?'
 = link_to 'Back to movie list', movies_path
 <br/>
-- if @movie.title.nil? then
-  = link_to 'Find Movies With Same Director', "/"
-- else
-  = link_to 'Find Movies With Same Director', movies_director_path(:movie_title => @movie.title)
+= link_to 'Find Movies With Same Director', home_page_path(:movie_title => "#{@movie.title}")
