@@ -1,31 +1,24 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 # for Heroku deployment - as described in Ap. A of ELLS book
-group :development do
-  gem 'sqlite3'
-  # gem 'ruby-debug19', :require => 'ruby-debug'
-	gem 'debugger'
-end
-
-group :test do
+group :test, :development do
   gem 'sqlite3'
   # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'debugger'
   gem 'cucumber-rails'
-  gem 'cucumber-rails-training-wheels'
-  gem 'database_cleaner'
-  gem 'capybara'
-  gem 'launchy'
+  gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions  
+  gem 'database_cleaner' # to clear Cucumber's test database between runs
+  gem 'capybara'         # lets Cucumber pretend to be a web browser
+  gem 'launchy'          # a useful debugging aid for user stories
   gem 'rspec-rails'
   gem 'rspec-mocks'
   gem 'simplecov'
   gem 'autotest'
-  gem 'factory_girl_rails'
 end
 
 group :production do

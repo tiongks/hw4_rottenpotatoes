@@ -37,7 +37,7 @@ class MoviesController < ApplicationController
   end
 
   def director
-    @movies = Movie.find_by_director(params[:director])
+    @movies = Movie.all(:conditions => {:director => params[:director]})
   end
 
   def create

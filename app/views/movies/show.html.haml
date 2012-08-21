@@ -16,7 +16,7 @@
     = @movie.director
     
   %li
-    = link_to 'Find Movies With Same Director'
+    = link_to 'Find Movies With Same Director', movies_director_path(:director => @movie.director)
 
 %h3 Description:
 

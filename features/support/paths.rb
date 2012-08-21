@@ -24,10 +24,12 @@ module NavigationHelpers
       raise "Error in mapping #{anchor_ref[1]}: " + "/movies/" + page_ref.to_s + "\npage.body:\n" + page.body
     end
 
-    when  /movies\/\d/ then begin
+    when /movies\/\d/ then begin
       "movies/" + page_name
     end
 
+    when /Similar Movies page for \"(.*)\"/ then '/movies/director'
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
